@@ -419,6 +419,34 @@ My research interest lies in differentiable and neural rendering for 3D reconstr
 '''
 
 PUBLICATIONS = {
+  'pub5': Publication(
+    image =  'data/images/thumbnails/archsym.png',
+    title =  'ArchSym: Detecting 3D-Grounded Architectural Symmetries in the Wild',
+    authors =  [
+      PEOPLE['hanyu-chen'],
+      PEOPLE['ruojin-cai'],
+      PEOPLE['steve-marschner'],
+      PEOPLE['noah-snavely']
+    ],
+    venue = 'IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2026',
+    resources = [
+      Resource(
+        icon = FontAwesomeIcons.GLOBE,
+        name = 'project',
+        path = 'https://hanyuc.com/archsym/'
+      ),
+      Resource(
+        icon = FontAwesomeIcons.PDF,
+        name = 'paper',
+        path = 'data/papers/archsym.pdf'
+      ),
+      Resource(
+        icon = FontAwesomeIcons.BOOK,
+        name = 'arXiv',
+        path = 'https://arxiv.org/abs/2604.22202'
+      )
+    ]
+  ),
   'pub4': Publication(
     image =  'data/images/thumbnails/hairformer.png',
     title =  'HairFormer: Transformer-Based Dynamic Neural Hair Simulation',
