@@ -26,7 +26,7 @@ class FontAwesomeIcons(str, Enum):
   LINKEDIN    = 'fa fa-linkedin-square'
 
 class Person:
-  def __init__(self, name, website, me = False):
+  def __init__(self, name, website = '', me = False):
     self.name = name
     self.website = website
     self.me = me
@@ -66,7 +66,7 @@ class Publication:
         names += f'<a href={author.website}>{name}</a>'
 
       else:
-        names += f'<a>{name}</a>'
+        names += f'<a href="javascript:void(0)">{name}</a>'
 
       if i < len(self.authors) - 1:
         names += ', '
@@ -371,6 +371,9 @@ PEOPLE = {
   'steve-marschner': Person(
     name = 'Steve Marschner',
     website = 'https://www.cs.cornell.edu/~srm/'
+  ),
+  'xueqing-tsang': Person(
+    name = 'Xueqing Tsang'
   )
 }
 
@@ -419,6 +422,34 @@ My research interest lies in differentiable and neural rendering for 3D reconstr
 '''
 
 PUBLICATIONS = {
+  'pub6': Publication(
+    image =  'data/images/thumbnails/metricscenes.png',
+    title =  'Honey, I Shrunk the Arc de Triomphe!',
+    authors =  [
+      PEOPLE['amber-xiangli'],
+      PEOPLE['hanyu-chen'],
+      PEOPLE['xueqing-tsang'],
+      PEOPLE['noah-snavely']
+    ],
+    venue = 'arXiv, 2026',
+    resources = [
+      Resource(
+        icon = FontAwesomeIcons.GLOBE,
+        name = 'project',
+        path = 'https://metricscenes.github.io/'
+      ),
+      Resource(
+        icon = FontAwesomeIcons.PDF,
+        name = 'paper',
+        path = 'data/papers/metricscenes.pdf'
+      ),
+      Resource(
+        icon = FontAwesomeIcons.BOOK,
+        name = 'arXiv',
+        path = 'https://arxiv.org/abs/2606.02379'
+      )
+    ]
+  ),
   'pub5': Publication(
     image =  'data/images/thumbnails/archsym.png',
     title =  'ArchSym: Detecting 3D-Grounded Architectural Symmetries in the Wild',

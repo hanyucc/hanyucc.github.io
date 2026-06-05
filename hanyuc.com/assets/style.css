@@ -13,15 +13,8 @@
   font-weight: bold;
 }
 
-@font-face {
-  font-family: 'Noto Sans SC';
-  src: url('fonts/Noto_Sans/NotoSansSC-VariableFont_wght') format('truetype');
-  font-weight: 400 700;
-  font-display: swap;
-}
-
 * {
-  font-family: 'selawik', 'Noto Sans SC', sans-serif;
+  font-family: 'selawik', sans-serif;
   line-height: 1.6;
   color: #252b2e;
 }
