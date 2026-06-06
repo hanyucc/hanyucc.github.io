@@ -80,7 +80,7 @@ class Publication:
     for resource in self.resources:
       resource_list += f'''
         <div class="pr-4">
-          <i class="{resource.icon}"></i>
+          <i class="{resource.icon.value}"></i>
           <a href="{resource.path}">
             {resource.name}
           </a>
@@ -122,7 +122,7 @@ class AboutMe:
     for resource in self.resources:
       links += f'''
         <div class="d-block profile-row">
-          <i class="{resource.icon}"></i>
+          <i class="{resource.icon.value}"></i> 
           <a
             class="pl-2"
             href="{resource.path}"
