@@ -431,7 +431,7 @@ PUBLICATIONS = {
       PEOPLE['xueqing-tsang'],
       PEOPLE['noah-snavely']
     ],
-    venue = 'arXiv, 2026',
+    venue = 'arXiv preprint, 2026',
     resources = [
       Resource(
         icon = FontAwesomeIcons.GLOBE,
