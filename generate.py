@@ -431,7 +431,7 @@ PUBLICATIONS = {
       PEOPLE['xueqing-tsang'],
       PEOPLE['noah-snavely']
     ],
-    venue = 'arXiv preprint, 2026',
+    venue = 'European Conference on Computer Vision (ECCV), 2026',
     resources = [
       Resource(
         icon = FontAwesomeIcons.GLOBE,
