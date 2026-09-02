@@ -9,7 +9,7 @@ site:
   repo: https://github.com/hanyucc/hanyucc.github.io
   description: >-
     Hanyu Chen is a Ph.D. student in Computer Science at Cornell University
-    working on differentiable and neural rendering for 3D reconstruction.
+    working on neural rendering and 3D reconstruction in the wild.
   analytics_id: G-THS1KHKPTC
 
 profile:
@@ -32,8 +32,8 @@ bio: >-
   Before starting my Ph.D., I received my M.S. and B.S. in Computer Science from
   <a href="https://www.cmu.edu/">Carnegie Mellon University</a>, where I was advised by
   Professor <a href="https://www.cs.cmu.edu/~igkioule/">Ioannis Gkioulekas</a>.
-  My research interest lies in differentiable and neural rendering for 3D
-  reconstruction, and more broadly at the intersection of graphics and 3D vision.
+  My research interest lies in neural rendering and 3D reconstruction in the
+  wild, and more broadly at the intersection of graphics and 3D vision.
 
 people:
   hanyu-chen:        {name: Hanyu Chen,        url: "https://hanyuc.com", me: true}
