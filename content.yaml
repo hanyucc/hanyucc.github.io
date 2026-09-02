@@ -1,0 +1,157 @@
+# ---------------------------------------------------------------------------
+# All site content lives here. No HTML, no layout - just data.
+# Edit this file to update the site, then run:  python build.py
+# ---------------------------------------------------------------------------
+
+site:
+  title: Hanyu Chen
+  url: https://hanyuc.com
+  repo: https://github.com/hanyucc/hanyucc.github.io
+  description: >-
+    Hanyu Chen is a Ph.D. student in Computer Science at Cornell University
+    working on differentiable and neural rendering for 3D reconstruction.
+  analytics_id: G-THS1KHKPTC
+
+profile:
+  name: Hanyu Chen
+  name_cjk: 陈涵宇
+  photo: data/images/profile.jpg
+  photo_alt: Hanyu Chen
+  links:
+    - {icon: mail,     label: Email,          href: "mailto:hanyuc@cs.cornell.edu"}
+    - {icon: github,   label: GitHub,         href: "https://github.com/hanyucc"}
+    - {icon: scholar,  label: Google Scholar, href: "https://scholar.google.com/citations?user=pyISEOcAAAAJ&hl=en"}
+    - {icon: linkedin, label: LinkedIn,       href: "https://www.linkedin.com/in/hanyu-chen-9ba563179/"}
+    - {icon: file,     label: CV,             href: "data/documents/cv.pdf"}
+
+# Inline links are the only markup allowed here.
+bio: >-
+  I am a second-year Ph.D. student in Computer Science at
+  <a href="https://www.cornell.edu/">Cornell University</a>, advised by Professor
+  <a href="https://www.cs.cornell.edu/~snavely/">Noah Snavely</a>.
+  Before starting my Ph.D., I received my M.S. and B.S. in Computer Science from
+  <a href="https://www.cmu.edu/">Carnegie Mellon University</a>, where I was advised by
+  Professor <a href="https://www.cs.cmu.edu/~igkioule/">Ioannis Gkioulekas</a>.
+  My research interest lies in differentiable and neural rendering for 3D
+  reconstruction, and more broadly at the intersection of graphics and 3D vision.
+
+people:
+  hanyu-chen:        {name: Hanyu Chen,        url: "https://hanyuc.com", me: true}
+  ioannis-gkioulekas: {name: Ioannis Gkioulekas, url: "https://www.cs.cmu.edu/~igkioule/"}
+  bailey-miller:     {name: Bailey Miller,     url: "https://www.bailey-miller.com/"}
+  alice-lai:         {name: Alice Lai,         url: "https://www.linkedin.com/in/alicelai5/"}
+  amber-xiangli:     {name: Yuanbo Xiangli,    url: "https://kam1107.github.io/"}
+  ruojin-cai:        {name: Ruojin Cai,        url: "https://www.cs.cornell.edu/~ruojin/"}
+  jeffrey-byrne:     {name: Jeffrey Byrne,     url: "https://www.jeffreybyrne.com/"}
+  noah-snavely:      {name: Noah Snavely,      url: "https://www.cs.cornell.edu/~snavely/"}
+  jingsen-zhu:       {name: Jingsen Zhu,       url: "https://jingsenzhu.github.io/"}
+  joy-zhang:         {name: Joy Xiaoji Zhang,  url: "https://www.cs.cornell.edu/~joyxiaojizhang/"}
+  steve-marschner:   {name: Steve Marschner,   url: "https://www.cs.cornell.edu/~srm/"}
+  xueqing-tsang:     {name: Xueqing Tsang}
+
+# Newest first. `award` and `bibtex` are optional.
+publications:
+  - id: metricscenes
+    title: Honey, I Shrunk the Arc de Triomphe!
+    authors: [amber-xiangli, hanyu-chen, xueqing-tsang, noah-snavely]
+    venue: European Conference on Computer Vision (ECCV)
+    short_venue: ECCV
+    year: 2026
+    image: data/images/thumbnails/metricscenes.png
+    links:
+      - {type: project, href: "https://metricscenes.github.io/"}
+      - {type: pdf,     href: "data/papers/metricscenes.pdf"}
+      - {type: arxiv,   href: "https://arxiv.org/abs/2606.02379"}
+
+  - id: archsym
+    title: "ArchSym: Detecting 3D-Grounded Architectural Symmetries in the Wild"
+    authors: [hanyu-chen, ruojin-cai, steve-marschner, noah-snavely]
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)
+    short_venue: CVPR
+    year: 2026
+    image: data/images/thumbnails/archsym.png
+    links:
+      - {type: project, href: "https://hanyuc.com/archsym/"}
+      - {type: pdf,     href: "data/papers/archsym.pdf"}
+      - {type: arxiv,   href: "https://arxiv.org/abs/2604.22202"}
+
+  - id: hairformer
+    title: "HairFormer: Transformer-Based Dynamic Neural Hair Simulation"
+    authors: [joy-zhang, jingsen-zhu, hanyu-chen, steve-marschner]
+    venue: arXiv preprint
+    short_venue: arXiv
+    year: 2025
+    preprint: true
+    image: data/images/thumbnails/hairformer.png
+    links:
+      - {type: pdf,   href: "data/papers/hairformer.pdf"}
+      - {type: arxiv, href: "https://arxiv.org/abs/2507.12600"}
+
+  - id: doppelgangers-plusplus
+    title: "Doppelgangers++: Improved Visual Disambiguation with Geometric 3D Features"
+    authors: [amber-xiangli, ruojin-cai, hanyu-chen, jeffrey-byrne, noah-snavely]
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)
+    short_venue: CVPR
+    year: 2025
+    award: highlight
+    image: data/images/thumbnails/dopp++.png
+    links:
+      - {type: project, href: "https://doppelgangers25.github.io/doppelgangers_plusplus/"}
+      - {type: pdf,     href: "data/papers/doppelgangers_plusplus.pdf"}
+      - {type: arxiv,   href: "https://arxiv.org/abs/2412.05826"}
+
+  - id: fast-dipole-sums
+    title: 3D Reconstruction with Fast Dipole Sums
+    authors: [hanyu-chen, bailey-miller, ioannis-gkioulekas]
+    venue: ACM Transactions on Graphics (SIGGRAPH Asia)
+    short_venue: SIGGRAPH Asia
+    year: 2024
+    journal: true
+    image: data/images/thumbnails/fast_dipole_sums.png
+    links:
+      - {type: project, href: "https://imaging.cs.cmu.edu/fast_dipole_sums"}
+      - {type: pdf,     href: "data/papers/fast_dipole_sums.pdf"}
+      - {type: arxiv,   href: "https://arxiv.org/abs/2405.16788"}
+
+  - id: volumetric-opaque-solids
+    title: "Objects as Volumes: A Stochastic Geometry View of Opaque Solids"
+    authors: [bailey-miller, hanyu-chen, alice-lai, ioannis-gkioulekas]
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)
+    short_venue: CVPR
+    year: 2024
+    award: best student paper honorable mention
+    image: data/images/thumbnails/volumetric_opaque_solids.png
+    links:
+      - {type: project, href: "https://imaging.cs.cmu.edu/volumetric_opaque_solids"}
+      - {type: pdf,     href: "data/papers/volumetric_opaque_solids.pdf"}
+      - {type: arxiv,   href: "https://arxiv.org/abs/2312.15406"}
+
+teaching:
+  - role: Teaching Assistant
+    course: Data Structures and Functional Programming
+    code: Cornell CS 3110
+    terms:
+      - {name: Spring 2025, href: "https://www.cs.cornell.edu/courses/cs3110/2025sp/"}
+  - role: Teaching Assistant
+    course: Computer Graphics Practicum
+    code: Cornell CS 4621
+    terms:
+      - {name: Fall 2024, href: "https://classes.cornell.edu/browse/roster/FA24/class/CS/4621"}
+  - role: Teaching Assistant
+    course: Physics-based Rendering
+    code: CMU 15-468/668/868
+    terms:
+      - {name: Spring 2023, href: "http://graphics.cs.cmu.edu/courses/15-468/2023_spring/"}
+  - role: Grader
+    course: Algebraic Structures
+    code: CMU 21-373
+    terms:
+      - {name: Fall 2022, href: "http://coursecatalog.web.cmu.edu/schools-colleges/melloncollegeofscience/departmentofmathematicalsciences/courses/"}
+
+music:
+  - 4SrRrB27n7fiRkQcPoKfpk
+  - 1bAZV1EBTRi9t1cVg75i8t
+  - 2nZ33CKRbgpJQJJQKHuGXb
+  - 6tVahG14lCjexVQnYWKgwF
+  - 7CqleiaEqHVazV19P532X9
+  - 7Jh1bpe76CNTCgdgAdBw4Z

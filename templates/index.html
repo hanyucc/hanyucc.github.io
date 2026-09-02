@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+{% from "icons.html" import icon %}
+
+{% set LINK_ICON = {'project': 'globe', 'pdf': 'file', 'arxiv': 'book', 'code': 'github'} %}
+
+{% block content %}
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="layout">
+
+  <!-- ---------------------------------------------------------------- rail -->
+  <header class="rail">
+    <img class="portrait" src="{{ profile.photo }}" alt="{{ profile.photo_alt }}"
+         width="240" height="240">
+
+    <h1 class="identity">
+      <span class="identity-latin">{{ profile.name }}</span>
+      <span class="identity-cjk" lang="zh-Hans">{{ profile.name_cjk }}</span>
+    </h1>
+
+    <nav class="rail-links" aria-label="Profile links">
+      {% for link in profile.links %}
+      <a href="{{ link.href }}">{{ icon(link.icon) }}<span>{{ link.label }}</span></a>
+      {% endfor %}
+    </nav>
+
+    <nav class="rail-nav" aria-label="Sections">
+      <a href="#publications">Publications</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#listening">Listening</a>
+    </nav>
+  </header>
+
+  <!-- ---------------------------------------------------------------- main -->
+  <main class="main" id="main">
+
+    <p class="bio">{{ bio | safe }}</p>
+
+    <!-- publications -->
+    <section id="publications" aria-labelledby="publications-heading">
+      <h2 id="publications-heading">Publications</h2>
+
+      {% for pub in publications %}
+      <article class="pub">
+        <a class="pub-figure" href="{{ pub.primary_href }}"
+           aria-label="{{ pub.title }}" tabindex="-1">
+          <img src="{{ pub.image }}" alt="" loading="lazy" decoding="async">
+        </a>
+
+        <div class="pub-body">
+          <h3 class="pub-title"><a href="{{ pub.primary_href }}">{{ pub.title }}</a></h3>
+
+          <p class="pub-authors">
+            {%- for a in pub.author_list -%}
+              {%- if a.get('me') %}<b>{{ a.name }}</b>
+              {%- elif a.get('url') %}<a href="{{ a.url }}">{{ a.name }}</a>
+              {%- else %}{{ a.name }}{% endif -%}
+              {{- ", " if not loop.last -}}
+            {%- endfor -%}
+          </p>
+
+          <p class="pub-venue">
+            <span class="venue-name" title="{{ pub.venue }}">{{ pub.short_venue }}</span>
+            <span class="venue-year">{{ pub.year }}</span>
+            {% if pub.get('award') %}<span class="award">{{ pub.award }}</span>{% endif %}
+          </p>
+
+          <div class="pub-links">
+            {% for link in pub.links %}
+            <a class="chip" href="{{ link.href }}">
+              {{ icon(LINK_ICON[link.type], 'icon icon-sm') }}<span>{{ link.type }}</span>
+            </a>
+            {% endfor %}
+            <button class="chip chip-button" type="button"
+                    data-bibtex-for="{{ pub.id }}"
+                    aria-expanded="false" aria-controls="bib-{{ pub.id }}">
+              {{ icon('quote', 'icon icon-sm') }}<span>bibtex</span>
+            </button>
+          </div>
+
+          <div class="bibtex" id="bib-{{ pub.id }}" hidden>
+            <button class="bibtex-copy" type="button">copy</button>
+            <pre><code>{{ pub.bibtex }}</code></pre>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </section>
+
+    <!-- teaching -->
+    <section id="teaching" aria-labelledby="teaching-heading">
+      <h2 id="teaching-heading">Teaching</h2>
+      <ul class="teaching">
+        {% for c in teaching %}
+        <li>
+          <span class="course-name">{{ c.course }}</span>
+          <span class="course-code">{{ c.code }}</span>
+          <span class="course-role">{{ c.role }} &middot;&nbsp;
+            {%- for t in c.terms %}
+              {% if t.get('href') %}<a href="{{ t.href }}">{{ t.name }}</a>{% else %}{{ t.name }}{% endif -%}
+              {{- ", " if not loop.last }}
+            {%- endfor %}
+          </span>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <!-- listening -->
+    <section id="listening" aria-labelledby="listening-heading">
+      <h2 id="listening-heading">Listening</h2>
+      <details class="music">
+        <summary>
+          {{ icon('music', 'icon icon-sm') }}
+          <span>some music i like</span>
+          {{ icon('chevron', 'icon icon-sm chevron') }}
+        </summary>
+        <div class="music-grid">
+          {% for track in music %}
+          <iframe title="Spotify track {{ loop.index }}" loading="lazy" height="152" frameborder="0"
+                  data-src="https://open.spotify.com/embed/track/{{ track }}?utm_source=generator"
+                  allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+          {% endfor %}
+        </div>
+      </details>
+    </section>
+
+    <footer class="footer">
+      <p>Built with <a href="{{ site.repo }}">a small Python script</a>. Last updated {{ build_date }}.</p>
+    </footer>
+  </main>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Spotify iframes are inert until the disclosure is first opened.
+document.querySelector('.music')?.addEventListener('toggle', function () {
+  if (!this.open) return;
+  this.querySelectorAll('iframe[data-src]').forEach(function (f) {
+    f.src = f.dataset.src;
+    f.removeAttribute('data-src');
+  });
+}, { once: true });
+
+// BibTeX disclosure + copy.
+document.querySelectorAll('[data-bibtex-for]').forEach(function (btn) {
+  var panel = document.getElementById('bib-' + btn.dataset.bibtexFor);
+  btn.addEventListener('click', function () {
+    var open = panel.hidden;
+    panel.hidden = !open;
+    btn.setAttribute('aria-expanded', String(open));
+  });
+});
+
+document.querySelectorAll('.bibtex-copy').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var text = btn.parentElement.querySelector('code').textContent;
+    navigator.clipboard.writeText(text).then(function () {
+      btn.textContent = 'copied';
+      setTimeout(function () { btn.textContent = 'copy'; }, 1400);
+    });
+  });
+});
+</script>
+{% endblock %}
