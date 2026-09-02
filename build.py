@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import hashlib
 import re
 import shutil
 from pathlib import Path
@@ -80,6 +81,28 @@ def make_bibtex(pub: dict, authors: list[dict]) -> str:
     return f"{kind}{{{key},\n{body}\n}}"
 
 
+def stamp_static() -> str:
+    """Content-hash static/ and rewrite font URLs in the copied stylesheet.
+
+    Fonts and CSS keep stable filenames, so without this a changed font is
+    served from cache indefinitely and edits appear not to have taken.
+    """
+    digest = hashlib.sha256()
+    for f in sorted(STATIC_SRC.rglob("*")):
+        if f.is_file():
+            digest.update(f.relative_to(STATIC_SRC).as_posix().encode())
+            digest.update(f.read_bytes())
+    version = digest.hexdigest()[:8]
+
+    css = STATIC_DST / "style.css"
+    css.write_text(
+        re.sub(r"url\('(fonts/[^']+)'\)", lambda m: f"url('{m.group(1)}?v={version}')",
+               css.read_text("utf-8")),
+        "utf-8",
+    )
+    return version
+
+
 def resolve(content: dict) -> dict:
     """Expand author ids and derive per-publication fields."""
     people = content["people"]
@@ -131,6 +154,7 @@ def main() -> None:
         shutil.rmtree(STATIC_DST)
     shutil.copytree(STATIC_SRC, STATIC_DST)
     (STATIC_DST / "favicon.svg").write_text(FAVICON, "utf-8")
+    html = html.replace("__V__", stamp_static())
 
     name = "preview.html" if args.preview else "index.html"
     (OUT / name).write_text(html, "utf-8")

@@ -10,5 +10,8 @@ venv/
 .DS_Store
 Thumbs.db
 
-# Local build scratch
-hanyuc.com/preview*.html
+# Build scratch: index.html is the only page that belongs in the output.
+# Anything else dropped in hanyuc.com/ is a preview and must not be deployed
+# (a stray placeholder page shipped to production this way once already).
+hanyuc.com/*.html
+!hanyuc.com/index.html
