@@ -422,15 +422,6 @@ h2 {
   text-align: right;
 }
 
-/* Our own transport state. The embed's icon is unreliable after loadUri(), so
-   this - driven by playback_update - is what the reader should trust. */
-.track-state { flex: none; width: 1em; height: 1em; color: var(--ink-faint); }
-.track-state svg { width: 100%; height: 100%; display: none; }
-.track:hover .i-play { display: block; }
-.track.is-current .i-play { display: block; }
-.track.is-current .track-state { color: var(--accent); }
-.track.is-playing .i-play { display: none; }
-.track.is-playing .i-pause { display: block; }
 
 .player { margin-top: var(--sp-4); max-width: 30rem; }
 .player iframe { border-radius: 12px; display: block; }

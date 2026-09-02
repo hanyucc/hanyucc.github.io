@@ -128,10 +128,6 @@
                 <span class="track-title">{{ track.title }}</span>
                 {% if track.artist %}<span class="track-artist">{{ track.artist }}</span>{% endif %}
               </span>
-              <span class="track-state" aria-hidden="true">
-                <svg class="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                <svg class="i-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-              </span>
               {% if track.length %}<span class="track-length">{{ track.length }}</span>{% endif %}
             </button>
           </li>
@@ -153,57 +149,27 @@
 
 {% block scripts %}
 <script>
-// One Spotify player for the whole list, created on the first click. Nothing
-// is requested from Spotify until then - opening the section costs nothing.
-//
-// Playback state is tracked from the API's `playback_update` events and shown
-// on our own rows, because the embed's built-in play/pause icon desyncs after
-// loadUri(). Our rows stay correct regardless of what the embed draws.
+// One Spotify player for the whole list. Clicking a track loads it; playback
+// is Spotify's business, so nothing here calls play() or tracks player state.
+// The player is created on first click, so opening this section contacts
+// Spotify zero times.
 (function () {
-  var controller = null, loading = false;
-  var current = null, playing = false;
+  var controller = null, loading = false, wanted = null;
   var panel = document.getElementById('player');
   var list = document.querySelector('.tracks');
   if (!list || !panel) return;
 
-  function paint() {
-    list.querySelectorAll('.track').forEach(function (b) {
-      var on = b.dataset.track === current;
-      b.classList.toggle('is-current', on);
-      b.classList.toggle('is-playing', on && playing);
-      if (on) { b.setAttribute('aria-current', 'true'); }
-      else { b.removeAttribute('aria-current'); }
+  list.addEventListener('click', function (e) {
+    var btn = e.target.closest('.track');
+    if (!btn) return;
+    wanted = btn.dataset.track;
+
+    list.querySelectorAll('.track[aria-current]').forEach(function (b) {
+      b.removeAttribute('aria-current');
     });
-  }
+    btn.setAttribute('aria-current', 'true');
 
-  function attach(c) {
-    controller = c;
-    c.addListener('playback_update', function (e) {
-      playing = e && e.data && !e.data.isPaused;
-      paint();
-    });
-  }
-
-  // loadUri() reloads the embed; a play() issued immediately is dropped, which
-  // is what leaves the embed showing "play" while audio runs. Retry briefly
-  // until playback_update confirms it took.
-  function playAfterLoad(attempt) {
-    if (!controller || playing || attempt > 8) return;
-    controller.play();
-    setTimeout(function () { playAfterLoad(attempt + 1); }, 250);
-  }
-
-  function choose(id) {
-    if (controller && id === current) { controller.togglePlay(); return; }
-    current = id;
-    playing = false;
-    paint();
-
-    if (controller) {
-      controller.loadUri('spotify:track:' + id);
-      setTimeout(function () { playAfterLoad(0); }, 300);
-      return;
-    }
+    if (controller) { controller.loadUri('spotify:track:' + wanted); return; }
     if (loading) return;
     loading = true;
     panel.hidden = false;
@@ -211,25 +177,20 @@
     window.onSpotifyIframeApiReady = function (IFrameAPI) {
       IFrameAPI.createController(
         document.getElementById('player-mount'),
-        { uri: 'spotify:track:' + current, height: 152 },
-        function (c) { attach(c); setTimeout(function () { playAfterLoad(0); }, 300); }
+        { uri: 'spotify:track:' + wanted, height: 152 },
+        function (c) { controller = c; }
       );
     };
     var s = document.createElement('script');
     s.src = 'https://open.spotify.com/embed/iframe-api/v1';
     s.async = true;
-    s.onerror = function () {           // blocked, offline, or API moved
+    s.onerror = function () {            // blocked, offline, or API moved
       loading = false;
       panel.innerHTML = '<p class="player-fallback">Could not load the Spotify '
-        + 'player. <a href="https://open.spotify.com/track/' + current + '">'
+        + 'player. <a href="https://open.spotify.com/track/' + wanted + '">'
         + 'Open this track on Spotify</a>.</p>';
     };
     document.body.appendChild(s);
-  }
-
-  list.addEventListener('click', function (e) {
-    var btn = e.target.closest('.track');
-    if (btn) choose(btn.dataset.track);
   });
 })();
 
