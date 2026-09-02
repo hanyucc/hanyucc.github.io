@@ -6,35 +6,35 @@
 /* --- fonts --------------------------------------------------------------- */
 @font-face {
   font-family: 'Newsreader';
-  src: url('fonts/newsreader-roman.woff2?v=be47aabc') format('woff2-variations');
+  src: url('fonts/newsreader-roman.woff2?v=f01ec22f') format('woff2-variations');
   font-weight: 400 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Newsreader';
-  src: url('fonts/newsreader-italic.woff2?v=be47aabc') format('woff2-variations');
+  src: url('fonts/newsreader-italic.woff2?v=f01ec22f') format('woff2-variations');
   font-weight: 400 700;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: 'Plex Mono';
-  src: url('fonts/plex-mono-400.woff2?v=be47aabc') format('woff2');
+  src: url('fonts/plex-mono-400.woff2?v=f01ec22f') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Plex Mono';
-  src: url('fonts/plex-mono-500.woff2?v=be47aabc') format('woff2');
+  src: url('fonts/plex-mono-500.woff2?v=f01ec22f') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Noto Serif SC';
-  src: url('fonts/noto-serif-sc-subset.woff2?v=be47aabc') format('woff2');
+  src: url('fonts/noto-serif-sc-subset.woff2?v=f01ec22f') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -48,14 +48,13 @@
 
   --paper:      #f4f6f5;
   --paper-sunk: #eceff0;
-  --ink:        #252b2e;
+  --ink:        #39443f;
   --ink-soft:   #5f6d68;
   --ink-faint:  #8d9a95;
   --accent:     #4b6e5d;
   --accent-hi:  #344f42;
   --award:      #b4574a;
   --rule:       #d5ded8;
-  --plate:      #ffffff;
 
   --measure: 66ch;
   --rail: 15rem;
@@ -76,23 +75,19 @@
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  /* dim plate + artwork together so white figures do not glare */
-  .pub-figure { filter: brightness(0.86) contrast(1.02); }
-  :root {
-    --paper:      #14171a;
-    --paper-sunk: #1b1f22;
-    --ink:        #d8dee2;
-    --ink-soft:   #98a5a1;
-    --ink-faint:  #6d7a76;
-    --accent:     #7fa98f;
-    --accent-hi:  #a3c6b0;
-    --award:      #d98878;
-    --rule:       #2b3235;
-    --plate:      #ffffff;
-    color-scheme: dark;
-  }
-}
+/* Deliberately light-only.
+ *
+ * Dark mode is blocked on the thumbnails, not on the palette. Three of the six
+ * have white baked into the image, so on a dark ground they render as bright
+ * rectangles; dimming them (brightness or opacity) only makes that less
+ * obtrusive, never absent. The other three are transparent but carry black
+ * captions, which disappear without a light plate behind them.
+ *
+ * Re-exporting those thumbnails - transparent backgrounds, and caption text
+ * light enough to survive on a dark ground - is what unblocks it. The palette
+ * below is ready for that; `color-scheme: light` keeps browsers from
+ * auto-darkening in the meantime.
+ */
 
 /* --- base ---------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
@@ -232,28 +227,26 @@ h2 {
 /* --- publications -------------------------------------------------------- */
 .pub {
   display: grid;
-  grid-template-columns: 8.5rem minmax(0, 1fr);
+  grid-template-columns: 11rem minmax(0, 1fr);
   gap: var(--sp-4);
   padding: var(--sp-4) 0;
   border-bottom: 1px solid var(--rule);
 }
 .pub:last-child { border-bottom: 0; }
 
+/* No box: each figure keeps its own aspect ratio (they run 1.00-1.27, so any
+   fixed ratio letterboxes some of them). `multiply` merges the white that is
+   baked into half the thumbnails into the paper, so all six read alike. */
 .pub-figure {
   display: block;
-  aspect-ratio: 4 / 3;
   overflow: hidden;
-  border-radius: 3px;
-  border: 1px solid var(--rule);
-  /* Figures are overwhelmingly white-backed; a plate makes that deliberate
-     rather than accidental, and keeps every thumbnail the same shape. */
-  background: var(--plate);
-  padding: 0.3rem;
+  border-radius: 2px;
 }
 .pub-figure img {
-  width: 100%; height: 100%;
-  object-fit: contain;
+  width: 100%;
+  height: auto;
   display: block;
+  mix-blend-mode: multiply;
   transition: transform 0.35s cubic-bezier(0.2, 0, 0, 1);
 }
 .pub:hover .pub-figure img { transform: scale(1.035); }
