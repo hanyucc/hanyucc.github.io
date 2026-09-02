@@ -125,6 +125,28 @@ def resolve(content: dict) -> dict:
     return content
 
 
+def load_music(content: dict) -> list[dict]:
+    """Pair each track id with its cached metadata from music.yaml.
+
+    Ids with no cached entry still render (title falls back to the id), so a
+    newly added track never breaks the build - run refresh_music.py to fill it.
+    """
+    cache = ROOT / "music.yaml"
+    by_id = {}
+    if cache.exists():
+        data = yaml.safe_load(cache.read_text("utf-8")) or {}
+        by_id = {t["id"]: t for t in data.get("tracks", [])}
+
+    tracks = []
+    for track_id in content.get("music") or []:
+        meta = by_id.get(track_id)
+        if meta is None:
+            print(f"  note: {track_id} is not in music.yaml; run refresh_music.py")
+            meta = {"id": track_id, "title": track_id, "artist": "", "length": ""}
+        tracks.append(meta)
+    return tracks
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument(
@@ -135,6 +157,7 @@ def main() -> None:
     args = ap.parse_args()
 
     content = resolve(yaml.safe_load((ROOT / "content.yaml").read_text("utf-8")))
+    content["music"] = load_music(content)
 
     env = Environment(
         loader=FileSystemLoader(ROOT / "templates"),

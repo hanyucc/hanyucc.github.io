@@ -115,13 +115,28 @@
           <span>some music i like</span>
           {{ icon('chevron', 'icon icon-sm chevron') }}
         </summary>
-        <div class="music-grid">
+        <ol class="tracks">
           {% for track in music %}
-          <iframe title="Spotify track {{ loop.index }}" loading="lazy" height="152" frameborder="0"
-                  data-src="https://open.spotify.com/embed/track/{{ track }}?utm_source=generator"
-                  allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+          <li>
+            <button class="track" type="button" data-track="{{ track.id }}"
+                    aria-label="Play {{ track.title }}{% if track.artist %} by {{ track.artist }}{% endif %}">
+              {% if track.art %}
+              <img class="track-art" src="{{ track.art }}" alt="" width="48" height="48"
+                   loading="lazy" decoding="async">
+              {% endif %}
+              <span class="track-text">
+                <span class="track-title">{{ track.title }}</span>
+                {% if track.artist %}<span class="track-artist">{{ track.artist }}</span>{% endif %}
+              </span>
+              {% if track.length %}<span class="track-length">{{ track.length }}</span>{% endif %}
+            </button>
+          </li>
           {% endfor %}
-        </div>
+        </ol>
+
+        <!-- One player for the whole list. Not created until a track is picked,
+             so opening this section contacts Spotify zero times. -->
+        <div class="player" id="player" hidden><div id="player-mount"></div></div>
       </details>
     </section>
 
@@ -134,14 +149,54 @@
 
 {% block scripts %}
 <script>
-// Spotify iframes are inert until the disclosure is first opened.
-document.querySelector('.music')?.addEventListener('toggle', function () {
-  if (!this.open) return;
-  this.querySelectorAll('iframe[data-src]').forEach(function (f) {
-    f.src = f.dataset.src;
-    f.removeAttribute('data-src');
+// One Spotify player for the whole list, created on the first click. Nothing
+// is requested from Spotify until then - opening the section costs nothing.
+(function () {
+  var controller = null, pending = null, loading = false;
+  var panel = document.getElementById('player');
+  var list = document.querySelector('.tracks');
+  if (!list || !panel) return;
+
+  function select(btn) {
+    list.querySelectorAll('.track[aria-current]').forEach(function (b) {
+      b.removeAttribute('aria-current');
+    });
+    btn.setAttribute('aria-current', 'true');
+  }
+
+  function play(id) {
+    if (controller) { controller.loadUri('spotify:track:' + id); return; }
+    pending = id;
+    if (loading) return;
+    loading = true;
+    panel.hidden = false;
+
+    window.onSpotifyIframeApiReady = function (IFrameAPI) {
+      IFrameAPI.createController(
+        document.getElementById('player-mount'),
+        { uri: 'spotify:track:' + pending, height: 152 },
+        function (c) { controller = c; }
+      );
+    };
+    var s = document.createElement('script');
+    s.src = 'https://open.spotify.com/embed/iframe-api/v1';
+    s.async = true;
+    s.onerror = function () {           // blocked, offline, or API moved
+      loading = false;
+      panel.innerHTML = '<p class="player-fallback">Could not load the Spotify '
+        + 'player. <a href="https://open.spotify.com/track/' + pending + '">'
+        + 'Open this track on Spotify</a>.</p>';
+    };
+    document.body.appendChild(s);
+  }
+
+  list.addEventListener('click', function (e) {
+    var btn = e.target.closest('.track');
+    if (!btn) return;
+    select(btn);
+    play(btn.dataset.track);
   });
-}, { once: true });
+})();
 
 // BibTeX disclosure + copy.
 document.querySelectorAll('[data-bibtex-for]').forEach(function (btn) {

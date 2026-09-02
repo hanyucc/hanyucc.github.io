@@ -1,2 +1,7 @@
+# Build (what CI installs and runs)
 Jinja2==3.1.6
 PyYAML==6.0.3
+
+# Only needed by refresh_music.py, which is run by hand when the track list
+# changes. build.py itself never touches the network or images.
+Pillow==11.3.0

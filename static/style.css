@@ -48,7 +48,7 @@
 
   --paper:      #f4f6f5;
   --paper-sunk: #eceff0;
-  --ink:        #39443f;
+  --ink:        #333c38;
   --ink-soft:   #5f6d68;
   --ink-faint:  #8d9a95;
   --accent:     #4b6e5d;
@@ -100,9 +100,9 @@ body {
   color: var(--ink);
   font-family: var(--serif);
   font-size: var(--step-0);
+  font-weight: 430;
   line-height: 1.6;
   font-synthesis-weight: none;
-  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3 { font-weight: 550; line-height: 1.3; margin: 0; text-wrap: balance; }
@@ -253,7 +253,7 @@ h2 {
 
 .pub-title {
   font-size: 1.125rem;
-  font-weight: 500;
+  font-weight: 520;
   letter-spacing: -0.004em;
   /* `balance` evens the line lengths, which splits noun phrases
      ("Improved Visual / Disambiguation"). `pretty` keeps them intact
@@ -366,13 +366,67 @@ h2 {
 .chevron { transition: transform 0.25s ease; }
 .music[open] .chevron { transform: rotate(90deg); }
 
-.music-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-  gap: var(--sp-3);
-  margin-top: var(--sp-4);
+.tracks {
+  list-style: none;
+  margin: var(--sp-4) 0 0;
+  padding: 0;
+  max-width: 30rem;
 }
-.music-grid iframe { width: 100%; border-radius: 8px; }
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  width: 100%;
+  padding: 0.4rem 0.5rem;
+  border: 0;
+  border-radius: 3px;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+.track:hover { background: var(--paper-sunk); }
+.track[aria-current] { background: var(--paper-sunk); }
+
+.track-art { border-radius: 2px; flex: none; }
+
+.track-text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+
+.track-title {
+  font-size: var(--step-0);
+  line-height: 1.35;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.track[aria-current] .track-title { color: var(--accent); }
+
+.track-artist {
+  font-family: var(--mono);
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.track-length {
+  font-family: var(--mono);
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+  flex: none;
+}
+
+.player { margin-top: var(--sp-4); max-width: 30rem; }
+.player iframe { border-radius: 12px; display: block; }
+.player-fallback {
+  font-family: var(--mono);
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+}
 
 /* --- footer -------------------------------------------------------------- */
 .footer {

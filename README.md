@@ -13,7 +13,8 @@ static/
   style.css          design tokens + layout + components
   fonts/             self-hosted woff2 (Newsreader, IBM Plex Mono, subset CJK)
 build.py             renders templates -> hanyuc.com/
-hanyuc.com/          published output; data/ holds PDFs and images
+hanyuc.com/          build output - only data/ is tracked; index.html and
+                     static/ are generated and deliberately not committed
 ```
 
 ## Editing
@@ -44,6 +45,39 @@ when you need volume/number/pages.
 Unknown author keys and publications with no links fail the build rather than
 rendering blank.
 
+## Music
+
+`content.yaml` holds Spotify track ids. Metadata and album art are fetched
+once and committed, so the build never needs the network:
+
+```sh
+python refresh_music.py     # rewrites music.yaml + hanyuc.com/data/images/music/
+```
+
+Run it after changing the `music:` ids. A track with no cached entry still
+renders (it falls back to showing the id), so forgetting cannot break a build.
+
+The page ships no Spotify iframe. Clicking a track creates a single player via
+Spotify's iFrame API and later clicks reuse it, so nothing is requested from
+Spotify until you actually play something.
+
+### Updating it automatically (not set up)
+
+`top/tracks` and `recently-played` are user-scoped, so they need OAuth - which
+cannot be done safely from a static page. The workable route is to do it in CI:
+
+1. Create a Spotify app; authorise your own account once to get a refresh token.
+2. Store `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET` and
+   `SPOTIFY_REFRESH_TOKEN` as GitHub Actions secrets.
+3. Have a scheduled workflow exchange the refresh token for an access token,
+   call `/v1/me/top/tracks?time_range=short_term&limit=6`, and rewrite
+   `music.yaml` before building.
+
+Prefer `top/tracks` over `recently-played`: the latter includes skips and
+repeats. Two things to weigh first - it publishes your listening habits with no
+curation step, and a failed token refresh should fall back to the committed
+`music.yaml` rather than failing the deploy.
+
 ## Building
 
 ```sh
@@ -61,7 +95,11 @@ cd hanyuc.com && python -m http.server 8899
 ## Deploying
 
 Pushing to `main` triggers `.github/workflows/deploy.yml`, which rebuilds the
-site from `content.yaml` and publishes `hanyuc.com/` to GitHub Pages. Because
-CI rebuilds, the deployed HTML cannot drift from the content it came from.
+site from `content.yaml` and publishes `hanyuc.com/` to GitHub Pages.
+
+The generated files (`hanyuc.com/index.html` and `hanyuc.com/static/`) are not
+committed - CI produces them on every deploy. So a fresh clone has no site in
+it until you run `python build.py`, and there is no committed copy that can
+fall out of step with `content.yaml` or the stylesheet.
 
 The pre-2026 version of this site is tagged `v1`.
