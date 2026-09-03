@@ -49,7 +49,16 @@ people:
   steve-marschner:   {name: Steve Marschner,   url: "https://www.cs.cornell.edu/~srm/"}
   xueqing-tsang:     {name: Xueqing Tsang}
 
-# Newest first. `award` and `bibtex` are optional.
+# Newest first. Author ids come from `people:` above; an unknown id fails the
+# build rather than rendering blank. The first entry in `links:` is what the
+# title and thumbnail point at.
+#
+# Optional per publication:
+#   award: highlight        renders in the accent colour after the year
+#   journal: true           BibTeX becomes @article instead of @inproceedings
+#   preprint: true          BibTeX becomes @misc, with the arXiv eprint id
+#   bibtex: |               a literal entry, when the generated one needs
+#                           volume/number/pages it cannot know
 publications:
   - id: metricscenes
     title: Honey, I Shrunk the Arc de Triomphe!

@@ -7,6 +7,11 @@
 Content lives in content.yaml, markup in templates/, styling in static/.
 Nothing here knows what a publication looks like; nothing there knows what
 one is.
+
+To look at the result locally, serve the output rather than opening the file -
+browsers refuse to load fonts over file://
+
+    cd hanyuc.com && python -m http.server 8899
 """
 
 from __future__ import annotations

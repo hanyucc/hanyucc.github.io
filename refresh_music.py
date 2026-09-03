@@ -10,6 +10,18 @@ build or a deploy. Re-run it only when the track list changes.
 No credentials required: oEmbed is public, and the artist name comes from the
 public embed page. If Spotify changes the shape of that page the artist is
 simply omitted rather than the run failing.
+
+Populating the list automatically from listening history is a different job.
+/v1/me/top/tracks and /v1/me/player/recently-played are user-scoped, so they
+need OAuth, which a static page cannot hold - it would have to run in CI with a
+refresh token in the repo secrets. Notes if that ever gets built:
+
+  - prefer top/tracks?time_range=short_term over recently-played; the latter
+    includes skips and repeats
+  - a failed token refresh must fall back to the committed music.yaml rather
+    than failing the deploy
+  - a commit pushed with the default GITHUB_TOKEN does not trigger other
+    workflows, so such a job has to build and deploy itself
 """
 
 from __future__ import annotations
