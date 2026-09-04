@@ -354,6 +354,14 @@ h2 {
 }
 
 /* --- listening ----------------------------------------------------------- */
+.band {
+  margin-bottom: var(--sp-4);
+  font-family: var(--mono);
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+}
+.band a { color: var(--accent); }
+
 .music summary {
   display: flex;
   align-items: center;
@@ -370,11 +378,17 @@ h2 {
 .chevron { transition: transform 0.25s ease; }
 .music[open] .chevron { transform: rotate(90deg); }
 
+.tracks-note {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  margin-top: var(--sp-2);
+}
+
 .tracks {
   list-style: none;
   margin: var(--sp-4) 0 0;
   padding: 0;
-  max-width: 30rem;
 }
 
 .track {
@@ -382,7 +396,7 @@ h2 {
   align-items: center;
   gap: var(--sp-3);
   width: 100%;
-  padding: 0.4rem 0.5rem;
+  padding: 0.35rem 0.5rem;
   border: 0;
   border-radius: 3px;
   background: none;
@@ -395,13 +409,15 @@ h2 {
 .track:hover { background: var(--paper-sunk); }
 .track[aria-current] { background: var(--paper-sunk); }
 
-.track-art { border-radius: 2px; flex: none; }
+.track-art { width: 40px; height: 40px; border-radius: 2px; flex: none; }
 
 .track-text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
 
 .track-title {
-  font-size: var(--step-0);
-  line-height: 1.35;
+  font-family: var(--mono);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--ink-soft);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -410,7 +426,7 @@ h2 {
 
 .track-artist {
   font-family: var(--mono);
-  font-size: var(--step--1);
+  font-size: 0.75rem;
   color: var(--ink-faint);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -419,7 +435,7 @@ h2 {
 
 .track-length {
   font-family: var(--mono);
-  font-size: var(--step--1);
+  font-size: 0.75rem;
   color: var(--ink-faint);
   flex: none;
   min-width: 2.6em;
@@ -427,7 +443,7 @@ h2 {
 }
 
 
-.player { margin-top: var(--sp-4); max-width: 30rem; }
+.player { margin-top: var(--sp-4); }
 .player iframe { border-radius: 12px; display: block; }
 .player-fallback {
   font-family: var(--mono);

@@ -27,7 +27,7 @@
     <nav class="rail-nav" aria-label="Sections">
       <a href="#publications">Publications</a>
       <a href="#teaching">Teaching</a>
-      <a href="#listening">Listening</a>
+      <a href="#music">Music</a>
     </nav>
   </header>
 
@@ -106,22 +106,27 @@
       </ul>
     </section>
 
-    <!-- listening -->
-    <section id="listening" aria-labelledby="listening-heading">
-      <h2 id="listening-heading">Listening</h2>
+    <!-- music -->
+    <section id="music" aria-labelledby="music-heading">
+      <h2 id="music-heading">Music</h2>
+      {% if band %}
+      <p class="band">{{ band.blurb }} &mdash;
+        <a href="{{ band.url }}">{{ band.name }}</a></p>
+      {% endif %}
       <details class="music">
         <summary>
           {{ icon('music', 'icon icon-sm') }}
-          <span>some music i like</span>
+          <span>songs i&rsquo;ve been listening to lately</span>
           {{ icon('chevron', 'icon icon-sm chevron') }}
         </summary>
+        <p class="tracks-note">(pulled from Spotify)</p>
         <ol class="tracks">
           {% for track in music %}
           <li>
             <button class="track" type="button" data-track="{{ track.id }}"
                     aria-label="Play {{ track.title }}{% if track.artist %} by {{ track.artist }}{% endif %}">
               {% if track.art %}
-              <img class="track-art" src="{{ track.art }}" alt="" width="48" height="48"
+              <img class="track-art" src="{{ track.art }}" alt="" width="40" height="40"
                    loading="lazy" decoding="async">
               {% endif %}
               <span class="track-text">
@@ -149,48 +154,82 @@
 
 {% block scripts %}
 <script>
-// One Spotify player for the whole list. Clicking a track loads it; playback
-// is Spotify's business, so nothing here calls play() or tracks player state.
-// The player is created on first click, so opening this section contacts
-// Spotify zero times.
+// One Spotify player for the whole list. Clicking a track loads it; clicking
+// the same track again closes the player. Playback is Spotify's business, so
+// nothing here calls play() or tracks player state. The SDK is not fetched
+// until the first click, so opening this section contacts Spotify zero times.
 (function () {
-  var controller = null, loading = false, wanted = null;
+  var api = null, apiLoading = false, queued = null;
+  var controller = null, wanted = null;
   var panel = document.getElementById('player');
   var list = document.querySelector('.tracks');
   if (!list || !panel) return;
 
-  list.addEventListener('click', function (e) {
-    var btn = e.target.closest('.track');
-    if (!btn) return;
-    wanted = btn.dataset.track;
-
-    list.querySelectorAll('.track[aria-current]').forEach(function (b) {
-      b.removeAttribute('aria-current');
-    });
-    btn.setAttribute('aria-current', 'true');
-
-    if (controller) { controller.loadUri('spotify:track:' + wanted); return; }
-    if (loading) return;
-    loading = true;
-    panel.hidden = false;
+  // The SDK calls onSpotifyIframeApiReady once, on first load. Re-injecting
+  // the script later does nothing, so hold on to the API object.
+  function withApi(cb) {
+    if (api) return cb(api);
+    queued = cb;
+    if (apiLoading) return;
+    apiLoading = true;
 
     window.onSpotifyIframeApiReady = function (IFrameAPI) {
-      IFrameAPI.createController(
-        document.getElementById('player-mount'),
-        { uri: 'spotify:track:' + wanted, height: 152 },
-        function (c) { controller = c; }
-      );
+      api = IFrameAPI;
+      var run = queued;
+      queued = null;
+      if (run) run(api);
     };
     var s = document.createElement('script');
     s.src = 'https://open.spotify.com/embed/iframe-api/v1';
     s.async = true;
     s.onerror = function () {            // blocked, offline, or API moved
-      loading = false;
+      apiLoading = false;
+      queued = null;
+      panel.hidden = false;
       panel.innerHTML = '<p class="player-fallback">Could not load the Spotify '
         + 'player. <a href="https://open.spotify.com/track/' + wanted + '">'
         + 'Open this track on Spotify</a>.</p>';
     };
     document.body.appendChild(s);
+  }
+
+  function clearSelection() {
+    list.querySelectorAll('.track[aria-current]').forEach(function (b) {
+      b.removeAttribute('aria-current');
+    });
+  }
+
+  function close() {
+    // Destroy rather than hide: a hidden iframe keeps playing.
+    if (controller && typeof controller.destroy === 'function') {
+      try { controller.destroy(); } catch (err) { /* already gone */ }
+    }
+    controller = null;
+    wanted = null;
+    panel.hidden = true;
+    panel.innerHTML = '<div id="player-mount"></div>';
+    clearSelection();
+  }
+
+  list.addEventListener('click', function (e) {
+    var btn = e.target.closest('.track');
+    if (!btn) return;
+    if (btn.dataset.track === wanted) { close(); return; }
+
+    wanted = btn.dataset.track;
+    clearSelection();
+    btn.setAttribute('aria-current', 'true');
+
+    if (controller) { controller.loadUri('spotify:track:' + wanted); return; }
+
+    panel.hidden = false;
+    withApi(function (API) {
+      API.createController(
+        document.getElementById('player-mount'),
+        { uri: 'spotify:track:' + wanted, height: 152 },
+        function (c) { controller = c; }
+      );
+    });
   });
 })();
 

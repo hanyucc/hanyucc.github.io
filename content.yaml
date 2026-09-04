@@ -135,6 +135,11 @@ publications:
       - {type: pdf,     href: "data/papers/volumetric_opaque_solids.pdf"}
       - {type: arxiv,   href: "https://arxiv.org/abs/2312.15406"}
 
+band:
+  name: chichichi
+  url: "https://www.instagram.com/chichichi2026nyc/"
+  blurb: I play in a band in New York
+
 teaching:
   - role: Teaching Assistant
     course: Data Structures and Functional Programming
@@ -157,10 +162,16 @@ teaching:
     terms:
       - {name: Fall 2022, href: "http://coursecatalog.web.cmu.edu/schools-colleges/melloncollegeofscience/departmentofmathematicalsciences/courses/"}
 
+# Shown under "music". Run refresh_music.py after changing these.
+# Currently my Spotify short_term top tracks, thinned to 2 per album.
 music:
-  - 4SrRrB27n7fiRkQcPoKfpk
-  - 1bAZV1EBTRi9t1cVg75i8t
-  - 2nZ33CKRbgpJQJJQKHuGXb
-  - 6tVahG14lCjexVQnYWKgwF
-  - 7CqleiaEqHVazV19P532X9
-  - 7Jh1bpe76CNTCgdgAdBw4Z
+  - 1bsPoGSrs4Vv8iuUs9GQI7   # Psycho Shit - The Strokes
+  - 2nxsLJwW4eFDwl36fUQJWe   # Going to Babble On - The Strokes
+  - 1oWlUSljPUqKwbvEl0C3zE   # 群青日和 - Tokyo Incidents
+  - 6NES7mGZAlF7u4eztL5g6E   # Hellfire - black midi
+  - 739nt7EHoiy723RNSBVWRk   # Discipline - King Crimson
+  - 02XnQdf7sipaKBBHixz3Zp   # Paparazzi - Lady Gaga
+  - 4wajJ1o7jWIg62YqpkHC7S   # Weird Fishes / Arpeggi - Radiohead
+  - 1Pf6c9KStYUPAloPzcPFVs   # Goldberg Variations - J.S. Bach
+  - 1on9G9x09oJLJZywcdj1ub   # 今夜はから騒ぎ - Tokyo Incidents
+  - 0DkazfLyVRaMvSkwycyyfT   # Sugar/Tzu - black midi

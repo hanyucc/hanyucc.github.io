@@ -131,25 +131,24 @@ def resolve(content: dict) -> dict:
 
 
 def load_music(content: dict) -> list[dict]:
-    """Pair each track id with its cached metadata from music.yaml.
+    """Take the track list from music.yaml, which refresh_music.py writes.
 
-    Ids with no cached entry still render (title falls back to the id), so a
-    newly added track never breaks the build - run refresh_music.py to fill it.
+    music.yaml is authoritative because the list may come from Spotify rather
+    than from content.yaml, in which case the two will not match. content.yaml
+    is the fallback so the section still renders (titles show as raw ids) if
+    the cache is missing.
     """
     cache = ROOT / "music.yaml"
-    by_id = {}
     if cache.exists():
         data = yaml.safe_load(cache.read_text("utf-8")) or {}
-        by_id = {t["id"]: t for t in data.get("tracks", [])}
+        tracks = data.get("tracks") or []
+        if tracks:
+            return tracks
 
-    tracks = []
-    for track_id in content.get("music") or []:
-        meta = by_id.get(track_id)
-        if meta is None:
-            print(f"  note: {track_id} is not in music.yaml; run refresh_music.py")
-            meta = {"id": track_id, "title": track_id, "artist": "", "length": ""}
-        tracks.append(meta)
-    return tracks
+    ids = content.get("music") or []
+    if ids:
+        print("  note: music.yaml is missing or empty; run refresh_music.py")
+    return [{"id": i, "title": i, "artist": "", "length": ""} for i in ids]
 
 
 def main() -> None:
@@ -182,6 +181,13 @@ def main() -> None:
         shutil.rmtree(STATIC_DST)
     shutil.copytree(STATIC_SRC, STATIC_DST)
     (STATIC_DST / "favicon.svg").write_text(FAVICON, "utf-8")
+
+    # Ship CNAME inside the artifact. The custom domain also lives in the Pages
+    # settings, but a deploy whose artifact omits it can unset that; belt and
+    # braces matters more while the repo is being recreated.
+    cname = ROOT / "CNAME"
+    if cname.exists():
+        shutil.copy2(cname, OUT / "CNAME")
     html = html.replace("__V__", stamp_static())
 
     name = "preview.html" if args.preview else "index.html"

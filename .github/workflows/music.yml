@@ -1,0 +1,97 @@
+# Refresh the "music" list from Spotify, then rebuild and publish.
+#
+# Runs on a schedule, so it also does the deploy itself: a commit pushed with
+# the default GITHUB_TOKEN does not trigger other workflows, so deploy.yml
+# would never see it.
+name: Refresh music
+
+on:
+  schedule:
+    # 06:00 UTC on Mondays. GitHub delays scheduled runs under load, and
+    # disables them entirely after 60 days with no repo activity.
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+    inputs:
+      time_range:
+        description: "Listening window"
+        type: choice
+        default: short_term
+        options: [short_term, medium_term, long_term]
+      per_album:
+        description: "Max tracks per album"
+        default: "2"
+
+permissions:
+  contents: write      # to commit the refreshed list back
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"       # never race deploy.yml
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # If Spotify is down or the refresh token has been revoked, keep the
+      # committed music.yaml and carry on. A stale track list is a much better
+      # outcome than a failed deploy.
+      - name: Refresh from Spotify
+        id: refresh
+        continue-on-error: true
+        env:
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+        run: |
+          python refresh_music.py --from-top \
+            --time-range "${{ inputs.time_range || 'short_term' }}" \
+            --per-album "${{ inputs.per_album || 2 }}" \
+            --count 10
+
+      - name: Report refresh outcome
+        if: steps.refresh.outcome == 'failure'
+        run: echo "::warning::Spotify refresh failed; deploying the committed list."
+
+      - name: Commit the refreshed list
+        run: |
+          if [ -z "$(git status --porcelain music.yaml hanyuc.com/data/images/music)" ]; then
+            echo "no change"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add music.yaml hanyuc.com/data/images/music
+          git commit -m "Refresh music list from Spotify"
+          git push
+
+      - name: Build site
+        run: python build.py
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './hanyuc.com'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
