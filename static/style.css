@@ -43,7 +43,11 @@
 
 /* --- tokens -------------------------------------------------------------- */
 :root {
-  --serif: 'Newsreader', 'Noto Serif SC', Georgia, 'Times New Roman', serif;
+  /* 'Noto Serif SC' here is the 3 KB subset covering only the name glyphs.
+     Any other CJK falls through to the reader's own system serif - every OS
+     ships one, so it costs nothing and needs no third-party request. */
+  --serif: 'Newsreader', 'Noto Serif SC', 'Songti SC', SimSun,
+           'Hiragino Mincho ProN', 'Yu Mincho', Georgia, 'Times New Roman', serif;
   --mono: 'Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   --paper:      #f4f6f5;
