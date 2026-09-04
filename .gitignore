@@ -21,3 +21,4 @@ Thumbs.db
 # Everything under hanyuc.com/data/ is source and stays tracked.
 hanyuc.com/*.html
 hanyuc.com/static/
+hanyuc.com/CNAME
