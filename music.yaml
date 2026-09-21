@@ -6,26 +6,36 @@ tracks:
   artist: The Strokes
   length: '4:18'
   art: data/images/music/18bHbpAKgsf8dor8F6qXHF.jpg
-- id: 2DqVYGuRxSdzZ2ZQMbwY6M
-  title: Liar's Remorse
-  artist: The Strokes
-  length: '4:50'
-  art: data/images/music/2DqVYGuRxSdzZ2ZQMbwY6M.jpg
 - id: 21YxK0klhpfLW8budkJaMF
   title: Lust For Life
   artist: Iggy Pop
   length: '5:13'
   art: data/images/music/21YxK0klhpfLW8budkJaMF.jpg
-- id: 739nt7EHoiy723RNSBVWRk
-  title: Discipline
-  artist: King Crimson
-  length: '5:13'
-  art: data/images/music/739nt7EHoiy723RNSBVWRk.jpg
+- id: 2DqVYGuRxSdzZ2ZQMbwY6M
+  title: Liar's Remorse
+  artist: The Strokes
+  length: '4:50'
+  art: data/images/music/2DqVYGuRxSdzZ2ZQMbwY6M.jpg
+- id: 5U9IjmMztThzBltkahR6TH
+  title: Goodbye Milu
+  artist: Chinese Football
+  length: '6:58'
+  art: data/images/music/5U9IjmMztThzBltkahR6TH.jpg
+- id: 15BQ7vEDv2LJuh8TxWIhtd
+  title: The Passenger
+  artist: Iggy Pop
+  length: '4:43'
+  art: data/images/music/15BQ7vEDv2LJuh8TxWIhtd.jpg
 - id: 1WUBWl3jNNYo0hrPTrA5D0
   title: The Manifesto (feat. Trueno and Proof)
   artist: Gorillaz, Trueno, Proof
   length: '7:19'
   art: data/images/music/1WUBWl3jNNYo0hrPTrA5D0.jpg
+- id: 3uqx1JmyAiuVk6YW0HSeAn
+  title: Unmade
+  artist: Thom Yorke
+  length: '4:27'
+  art: data/images/music/3uqx1JmyAiuVk6YW0HSeAn.jpg
 - id: 5FH7DTLl8WQNkZs00Cb3EM
   title: The Empty Dream Machine (feat. Black Thought, Johnny Marr and Anoushka Shankar)
   artist: Gorillaz, Black Thought, Johnny Marr, Anoushka Shankar
@@ -43,13 +53,3 @@ tracks:
   artist: Jimi Hendrix
   length: '2:26'
   art: data/images/music/1ntxpzIUbSsizvuAy6lTYY.jpg
-- id: 3uqx1JmyAiuVk6YW0HSeAn
-  title: Unmade
-  artist: Thom Yorke
-  length: '4:27'
-  art: data/images/music/3uqx1JmyAiuVk6YW0HSeAn.jpg
-- id: 15BQ7vEDv2LJuh8TxWIhtd
-  title: The Passenger
-  artist: Iggy Pop
-  length: '4:43'
-  art: data/images/music/15BQ7vEDv2LJuh8TxWIhtd.jpg
