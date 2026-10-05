@@ -6,16 +6,26 @@ tracks:
   artist: Iggy Pop
   length: '5:13'
   art: data/images/music/21YxK0klhpfLW8budkJaMF.jpg
-- id: 18bHbpAKgsf8dor8F6qXHF
-  title: Going Shopping
-  artist: The Strokes
-  length: '4:18'
-  art: data/images/music/18bHbpAKgsf8dor8F6qXHF.jpg
 - id: 5gBMUQu2FVV1OYu92hbJjv
   title: Lonely in the Future
   artist: The Strokes
   length: '3:20'
   art: data/images/music/5gBMUQu2FVV1OYu92hbJjv.jpg
+- id: 4uOuhEWoGP6qHOegJELIWn
+  title: PIGS IN THE RIVER
+  artist: Re-TROS
+  length: '6:43'
+  art: data/images/music/4uOuhEWoGP6qHOegJELIWn.jpg
+- id: 018xjTJrMVW1MHC5dYnKUa
+  title: AT MOSP HERE
+  artist: Re-TROS
+  length: '12:06'
+  art: data/images/music/018xjTJrMVW1MHC5dYnKUa.jpg
+- id: 18bHbpAKgsf8dor8F6qXHF
+  title: Going Shopping
+  artist: The Strokes
+  length: '4:18'
+  art: data/images/music/18bHbpAKgsf8dor8F6qXHF.jpg
 - id: 5U9IjmMztThzBltkahR6TH
   title: Goodbye Milu
   artist: Chinese Football
@@ -41,13 +51,3 @@ tracks:
   artist: The Smashing Pumpkins
   length: '4:26'
   art: data/images/music/5QLHGv0DfpeXLNFo7SFEy1.jpg
-- id: 2YL0CAX9wkWbcZ6aUilT0m
-  title: The Burning Plain
-  artist: 丟萊卡
-  length: '6:01'
-  art: data/images/music/2YL0CAX9wkWbcZ6aUilT0m.jpg
-- id: 4Igc5RalTxkRNWrs4OngFO
-  title: 运河的故事
-  artist: Oh! Dirty Fingers
-  length: '3:08'
-  art: data/images/music/4Igc5RalTxkRNWrs4OngFO.jpg
