@@ -16,6 +16,11 @@ tracks:
   artist: Geese
   length: '3:44'
   art: data/images/music/5WGr8oEBp2RBrorc5ZEx1K.jpg
+- id: 6LgJvl0Xdtc73RJ1mmpotq
+  title: Paranoid Android
+  artist: Radiohead
+  length: '6:27'
+  art: data/images/music/6LgJvl0Xdtc73RJ1mmpotq.jpg
 - id: 4uOuhEWoGP6qHOegJELIWn
   title: PIGS IN THE RIVER
   artist: Re-TROS
@@ -31,23 +36,18 @@ tracks:
   artist: Re-TROS
   length: '12:06'
   art: data/images/music/018xjTJrMVW1MHC5dYnKUa.jpg
+- id: 3qdDjz9kOvquEFbvXBYOMQ
+  title: Tomorrow Comes Today
+  artist: Gorillaz
+  length: '3:13'
+  art: data/images/music/3qdDjz9kOvquEFbvXBYOMQ.jpg
+- id: 1sgyYCbGhkX3auLHCQ825G
+  title: Strobe
+  artist: deadmau5
+  length: '10:34'
+  art: data/images/music/1sgyYCbGhkX3auLHCQ825G.jpg
 - id: 36MGfjOTOwx1udRX5dDnoJ
   title: Oil (feat. Stevie Nicks)
   artist: Gorillaz, Stevie Nicks
   length: '3:50'
   art: data/images/music/36MGfjOTOwx1udRX5dDnoJ.jpg
-- id: 0eEgMbSzOHmkOeVuNC3E0k
-  title: Kids with Guns
-  artist: Gorillaz, Neneh Cherry
-  length: '3:45'
-  art: data/images/music/0eEgMbSzOHmkOeVuNC3E0k.jpg
-- id: 1bsPoGSrs4Vv8iuUs9GQI7
-  title: Psycho Shit
-  artist: The Strokes
-  length: '5:23'
-  art: data/images/music/1bsPoGSrs4Vv8iuUs9GQI7.jpg
-- id: 2nxsLJwW4eFDwl36fUQJWe
-  title: Going to Babble On
-  artist: The Strokes
-  length: '4:06'
-  art: data/images/music/2nxsLJwW4eFDwl36fUQJWe.jpg
