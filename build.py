@@ -31,14 +31,6 @@ OUT = ROOT / "hanyuc.com"
 STATIC_SRC = ROOT / "static"
 STATIC_DST = OUT / "static"
 
-FAVICON = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-<rect width="32" height="32" rx="5" fill="#4b6e5d"/>
-<text x="16" y="23" font-family="Georgia,serif" font-size="21" font-weight="600"
-      text-anchor="middle" fill="#f4f6f5">H</text>
-</svg>
-"""
-
-
 def bibtex_key(pub: dict, first_author_surname: str) -> str:
     """chen2024dipole -- surname + year + first distinctive title word."""
     stop = {
@@ -180,7 +172,6 @@ def main() -> None:
     if STATIC_DST.exists():
         shutil.rmtree(STATIC_DST)
     shutil.copytree(STATIC_SRC, STATIC_DST)
-    (STATIC_DST / "favicon.svg").write_text(FAVICON, "utf-8")
 
     # Ship CNAME inside the artifact. The custom domain also lives in the Pages
     # settings, but a deploy whose artifact omits it can unset that; belt and
