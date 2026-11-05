@@ -255,6 +255,13 @@ h2 {
 }
 .pub:hover .pub-figure img { transform: scale(1.035); }
 
+/* Optional hover thumbnail: a second image stacked on the first that crossfades in. */
+.pub-figure.has-hover { position: relative; }
+.pub-figure.has-hover img { transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.2, 0, 0, 1); }
+.pub-figure .pub-figure-hover { position: absolute; inset: 0; height: 100%; object-fit: contain; opacity: 0; }
+.pub:hover .pub-figure.has-hover img:not(.pub-figure-hover) { opacity: 0; }
+.pub:hover .pub-figure.has-hover .pub-figure-hover { opacity: 1; }
+
 .pub-title {
   font-size: 1.125rem;
   font-weight: 520;

@@ -42,9 +42,12 @@
 
       {% for pub in publications %}
       <article class="pub">
-        <a class="pub-figure" href="{{ pub.primary_href }}"
+        <a class="pub-figure{% if pub.get('hover_image') %} has-hover{% endif %}" href="{{ pub.primary_href }}"
            aria-label="{{ pub.title }}" tabindex="-1">
           <img src="{{ pub.image }}" alt="" loading="lazy" decoding="async">
+          {% if pub.get('hover_image') %}
+          <img class="pub-figure-hover" src="{{ pub.hover_image }}" alt="" loading="lazy" decoding="async">
+          {% endif %}
         </a>
 
         <div class="pub-body">
@@ -71,17 +74,21 @@
               {{ icon(LINK_ICON[link.type], 'icon icon-sm') }}<span>{{ link.type }}</span>
             </a>
             {% endfor %}
+            {% if pub.bibtex %}
             <button class="chip chip-button" type="button"
                     data-bibtex-for="{{ pub.id }}"
                     aria-expanded="false" aria-controls="bib-{{ pub.id }}">
               {{ icon('quote', 'icon icon-sm') }}<span>bibtex</span>
             </button>
+            {% endif %}
           </div>
 
+          {% if pub.bibtex %}
           <div class="bibtex" id="bib-{{ pub.id }}" hidden>
             <button class="bibtex-copy" type="button">copy</button>
             <pre><code>{{ pub.bibtex }}</code></pre>
           </div>
+          {% endif %}
         </div>
       </article>
       {% endfor %}

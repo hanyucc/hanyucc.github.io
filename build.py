@@ -48,6 +48,8 @@ def make_bibtex(pub: dict, authors: list[dict]) -> str:
     Override per-publication with an explicit `bibtex:` key in content.yaml
     when the venue needs fields this cannot know (volume, number, pages).
     """
+    if pub.get("bibtex") is False:
+        return ""
     if pub.get("bibtex"):
         return pub["bibtex"].strip()
 

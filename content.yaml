@@ -59,7 +59,23 @@ people:
 #   preprint: true          BibTeX becomes @misc, with the arXiv eprint id
 #   bibtex: |               a literal entry, when the generated one needs
 #                           volume/number/pages it cannot know
+#   bibtex: false           no bibtex button at all
+#   hover_image: <path>     second thumbnail, crossfades in on hover
 publications:
+  - id: trainspotting
+    title: "Trainspotting: Learning Object-Centric 3D Reconstruction from Found Photos"
+    authors: [hanyu-chen, noah-snavely]
+    venue: Preprint
+    short_venue: Preprint
+    year: 2026
+    preprint: true
+    bibtex: false
+    image: data/images/thumbnails/trainspotting.png
+    hover_image: data/images/thumbnails/trainspotting_hover.png
+    links:
+      - {type: project, href: "https://hanyuc.com/trainspotting/"}
+      - {type: pdf,     href: "data/papers/trainspotting.pdf"}
+
   - id: metricscenes
     title: Honey, I Shrunk the Arc de Triomphe!
     authors: [amber-xiangli, hanyu-chen, xueqing-tsang, noah-snavely]
