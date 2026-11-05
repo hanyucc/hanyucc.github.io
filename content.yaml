@@ -63,7 +63,7 @@ people:
 #   hover_image: <path>     second thumbnail, crossfades in on hover
 publications:
   - id: trainspotting
-    title: "Trainspotting: Learning Object-Centric 3D Reconstruction from Found Photos"
+    title: "Trainspotting: Learning Object-Centric 3D Reconstruction from Found Photos"   # no-break space keeps "3D Reconstruction" together
     authors: [hanyu-chen, noah-snavely]
     venue: Preprint
     short_venue: Preprint
