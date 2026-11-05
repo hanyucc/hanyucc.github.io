@@ -69,12 +69,22 @@ publications:
     short_venue: Preprint
     year: 2026
     preprint: true
-    bibtex: false
+    bibtex: |
+      @misc{chen2026trainspotting,
+        title = {{Trainspotting: Learning Object-Centric 3D Reconstruction from Found Photos}},
+        author = {Chen, Hanyu and Snavely, Noah},
+        year = {2026},
+        eprint = {2611.06849},
+        archivePrefix = {arXiv},
+        primaryClass = {cs.CV},
+        url = {https://arxiv.org/abs/2611.06849}
+      }
     image: data/images/thumbnails/trainspotting.png
     hover_image: data/images/thumbnails/trainspotting_hover.png
     links:
       - {type: project, href: "https://hanyuc.com/trainspotting/"}
       - {type: pdf,     href: "data/papers/trainspotting.pdf"}
+      - {type: arxiv,   href: "https://arxiv.org/abs/2611.06849"}
 
   - id: metricscenes
     title: Honey, I Shrunk the Arc de Triomphe!
