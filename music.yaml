@@ -6,48 +6,48 @@ tracks:
   artist: Gorillaz
   length: '3:13'
   art: data/images/music/3qdDjz9kOvquEFbvXBYOMQ.jpg
-- id: 5WGr8oEBp2RBrorc5ZEx1K
-  title: Trinidad
-  artist: Geese
-  length: '3:44'
-  art: data/images/music/5WGr8oEBp2RBrorc5ZEx1K.jpg
 - id: 6LgJvl0Xdtc73RJ1mmpotq
   title: Paranoid Android
   artist: Radiohead
   length: '6:27'
   art: data/images/music/6LgJvl0Xdtc73RJ1mmpotq.jpg
-- id: 2bfGNzdiRa1jXZRdfssSzR
-  title: Dirty Harry (feat. Bootie Brown)
-  artist: Gorillaz, Bootie Brown
-  length: '3:50'
-  art: data/images/music/2bfGNzdiRa1jXZRdfssSzR.jpg
-- id: 4J3I4jpAtNjsclcs99jzeF
-  title: Cracker Island (feat. Thundercat)
-  artist: Gorillaz, Thundercat
-  length: '3:33'
-  art: data/images/music/4J3I4jpAtNjsclcs99jzeF.jpg
-- id: 7qOBKhD1a54OvLvVee2tGf
-  title: Cobra
+- id: 4gXvwRoP7GYoipYRTXQUxW
+  title: Getting Killed
   artist: Geese
-  length: '3:05'
-  art: data/images/music/7qOBKhD1a54OvLvVee2tGf.jpg
+  length: '4:44'
+  art: data/images/music/4gXvwRoP7GYoipYRTXQUxW.jpg
+- id: 5WGr8oEBp2RBrorc5ZEx1K
+  title: Trinidad
+  artist: Geese
+  length: '3:44'
+  art: data/images/music/5WGr8oEBp2RBrorc5ZEx1K.jpg
+- id: 21YxK0klhpfLW8budkJaMF
+  title: Lust For Life
+  artist: Iggy Pop
+  length: '5:13'
+  art: data/images/music/21YxK0klhpfLW8budkJaMF.jpg
 - id: 7JzmCjvB6bk48JghLyrg8N
   title: Last Living Souls
   artist: Gorillaz
   length: '3:15'
   art: data/images/music/7JzmCjvB6bk48JghLyrg8N.jpg
-- id: 1sgyYCbGhkX3auLHCQ825G
-  title: Strobe
-  artist: deadmau5
-  length: '10:34'
-  art: data/images/music/1sgyYCbGhkX3auLHCQ825G.jpg
-- id: 60SvhHtwefT0e2G7i7kOH3
-  title: New Gold (feat. Tame Impala and Bootie Brown)
-  artist: Gorillaz, Tame Impala, Bootie Brown
-  length: '3:35'
-  art: data/images/music/60SvhHtwefT0e2G7i7kOH3.jpg
-- id: 2nxsLJwW4eFDwl36fUQJWe
-  title: Going to Babble On
+- id: 4Wgj6jzoI2gYlumXdYAB8U
+  title: The National Anthem
+  artist: Radiohead
+  length: '5:51'
+  art: data/images/music/4Wgj6jzoI2gYlumXdYAB8U.jpg
+- id: 22a006OJm48zH87SkPpSVx
+  title: Dine N'Dash
   artist: The Strokes
-  length: '4:06'
-  art: data/images/music/2nxsLJwW4eFDwl36fUQJWe.jpg
+  length: '5:03'
+  art: data/images/music/22a006OJm48zH87SkPpSVx.jpg
+- id: 15BQ7vEDv2LJuh8TxWIhtd
+  title: The Passenger
+  artist: ''
+  length: ''
+  art: data/images/music/15BQ7vEDv2LJuh8TxWIhtd.jpg
+- id: 3QDahKSqLwYJYQRbILdzS6
+  title: Kid A
+  artist: Radiohead
+  length: '4:44'
+  art: data/images/music/3QDahKSqLwYJYQRbILdzS6.jpg
