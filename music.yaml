@@ -11,43 +11,43 @@ tracks:
   artist: Radiohead
   length: '6:27'
   art: data/images/music/6LgJvl0Xdtc73RJ1mmpotq.jpg
+- id: 1kSWrMDt439cT64WpjJigW
+  title: 19-2000
+  artist: Gorillaz, Miho Hatori, Tina Weymouth
+  length: '3:30'
+  art: data/images/music/1kSWrMDt439cT64WpjJigW.jpg
+- id: 55mW03rqsI9s3xUnuruF7G
+  title: Sherpa
+  artist: Angine de Poitrine
+  length: '5:43'
+  art: data/images/music/55mW03rqsI9s3xUnuruF7G.jpg
+- id: 2kRFrWaLWiKq48YYVdGcm8
+  title: Everything In Its Right Place
+  artist: Radiohead
+  length: '4:11'
+  art: data/images/music/2kRFrWaLWiKq48YYVdGcm8.jpg
 - id: 4gXvwRoP7GYoipYRTXQUxW
   title: Getting Killed
   artist: Geese
   length: '4:44'
   art: data/images/music/4gXvwRoP7GYoipYRTXQUxW.jpg
-- id: 5WGr8oEBp2RBrorc5ZEx1K
-  title: Trinidad
+- id: 5B2rTms0JEIulMenXo0aD8
+  title: 新都人
+  artist: Hiperson
+  length: '5:42'
+  art: data/images/music/5B2rTms0JEIulMenXo0aD8.jpg
+- id: 5jR6zOQf3HtU2mifXWg6hE
+  title: Bow Down
   artist: Geese
-  length: '3:44'
-  art: data/images/music/5WGr8oEBp2RBrorc5ZEx1K.jpg
-- id: 21YxK0klhpfLW8budkJaMF
-  title: Lust For Life
-  artist: Iggy Pop
-  length: '5:13'
-  art: data/images/music/21YxK0klhpfLW8budkJaMF.jpg
-- id: 7JzmCjvB6bk48JghLyrg8N
-  title: Last Living Souls
-  artist: Gorillaz
-  length: '3:15'
-  art: data/images/music/7JzmCjvB6bk48JghLyrg8N.jpg
+  length: '3:28'
+  art: data/images/music/5jR6zOQf3HtU2mifXWg6hE.jpg
 - id: 4Wgj6jzoI2gYlumXdYAB8U
   title: The National Anthem
   artist: Radiohead
   length: '5:51'
   art: data/images/music/4Wgj6jzoI2gYlumXdYAB8U.jpg
-- id: 22a006OJm48zH87SkPpSVx
-  title: Dine N'Dash
-  artist: The Strokes
-  length: '5:03'
-  art: data/images/music/22a006OJm48zH87SkPpSVx.jpg
-- id: 15BQ7vEDv2LJuh8TxWIhtd
-  title: The Passenger
-  artist: ''
-  length: ''
-  art: data/images/music/15BQ7vEDv2LJuh8TxWIhtd.jpg
-- id: 3QDahKSqLwYJYQRbILdzS6
-  title: Kid A
-  artist: Radiohead
-  length: '4:44'
-  art: data/images/music/3QDahKSqLwYJYQRbILdzS6.jpg
+- id: 7JzmCjvB6bk48JghLyrg8N
+  title: Last Living Souls
+  artist: Gorillaz
+  length: '3:15'
+  art: data/images/music/7JzmCjvB6bk48JghLyrg8N.jpg
