@@ -6,11 +6,6 @@ tracks:
   artist: Gorillaz
   length: '3:13'
   art: data/images/music/3qdDjz9kOvquEFbvXBYOMQ.jpg
-- id: 6LgJvl0Xdtc73RJ1mmpotq
-  title: Paranoid Android
-  artist: Radiohead
-  length: '6:27'
-  art: data/images/music/6LgJvl0Xdtc73RJ1mmpotq.jpg
 - id: 1kSWrMDt439cT64WpjJigW
   title: 19-2000
   artist: Gorillaz, Miho Hatori, Tina Weymouth
@@ -26,28 +21,33 @@ tracks:
   artist: Radiohead
   length: '4:11'
   art: data/images/music/2kRFrWaLWiKq48YYVdGcm8.jpg
-- id: 4gXvwRoP7GYoipYRTXQUxW
-  title: Getting Killed
-  artist: Geese
-  length: '4:44'
-  art: data/images/music/4gXvwRoP7GYoipYRTXQUxW.jpg
 - id: 5B2rTms0JEIulMenXo0aD8
   title: 新都人
   artist: Hiperson
   length: '5:42'
   art: data/images/music/5B2rTms0JEIulMenXo0aD8.jpg
-- id: 5jR6zOQf3HtU2mifXWg6hE
-  title: Bow Down
-  artist: Geese
-  length: '3:28'
-  art: data/images/music/5jR6zOQf3HtU2mifXWg6hE.jpg
 - id: 4Wgj6jzoI2gYlumXdYAB8U
   title: The National Anthem
   artist: Radiohead
   length: '5:51'
   art: data/images/music/4Wgj6jzoI2gYlumXdYAB8U.jpg
-- id: 7JzmCjvB6bk48JghLyrg8N
-  title: Last Living Souls
-  artist: Gorillaz
-  length: '3:15'
-  art: data/images/music/7JzmCjvB6bk48JghLyrg8N.jpg
+- id: 1hAloWiinXLPQUJxrJReb1
+  title: アイドル
+  artist: YOASOBI
+  length: '3:31'
+  art: data/images/music/1hAloWiinXLPQUJxrJReb1.jpg
+- id: 1zd35Y44Blc1CwwVbW3Qnk
+  title: 群青
+  artist: YOASOBI
+  length: '4:08'
+  art: data/images/music/1zd35Y44Blc1CwwVbW3Qnk.jpg
+- id: 5jR6zOQf3HtU2mifXWg6hE
+  title: Bow Down
+  artist: Geese
+  length: '3:28'
+  art: data/images/music/5jR6zOQf3HtU2mifXWg6hE.jpg
+- id: 4gXvwRoP7GYoipYRTXQUxW
+  title: Getting Killed
+  artist: Geese
+  length: '4:44'
+  art: data/images/music/4gXvwRoP7GYoipYRTXQUxW.jpg
